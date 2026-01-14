@@ -1,6 +1,9 @@
 package com.controller;
 
+import com.dto.GuestRunRequest;
+import com.dto.GuestRunResponse;
 import com.execution.DockerRunner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,10 +17,12 @@ public class GuestCompilerController {
     }
 
     @PostMapping("/run")
-    public String run(@RequestParam String language,
-                      @RequestBody String code,
-                      @RequestParam(required = false) String input) {
-
-        return dockerRunner.runGuest(language, code, input == null ? "" : input);
+    public ResponseEntity<GuestRunResponse> run(@RequestBody GuestRunRequest req) {
+        String output = dockerRunner.runGuest(
+                req.getLanguage(),
+                req.getCode(),
+                req.getInput()
+        );
+        return ResponseEntity.ok(new GuestRunResponse(output));
     }
 }
