@@ -1,12 +1,14 @@
 package com.execution;
 
 import com.dto.ExecutionResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Component
 public class DockerRunner {
 
@@ -98,7 +100,11 @@ public class DockerRunner {
             Process p = pb.start();
             p.waitFor(3, TimeUnit.SECONDS);
 
-            return new String(p.getInputStream().readAllBytes());
+            String stdout = new String(p.getInputStream().readAllBytes());
+            String stderr = new String(p.getErrorStream().readAllBytes());
+            log.info(stderr);
+            return stdout;
+
 
         } catch (Exception e) {
             return "ERROR";
