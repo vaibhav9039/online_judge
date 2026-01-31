@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class Submission {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long problemId;
     private String language;
