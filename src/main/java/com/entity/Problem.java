@@ -1,9 +1,6 @@
 package com.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +16,16 @@ public class Problem {
     private String title;
 
     @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String examplesJson;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String constraints;
 
     private long timeLimitMs = 2000;
 
