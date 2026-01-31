@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -26,6 +28,9 @@ public class Problem {
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String constraints;
+
+    @ElementCollection
+    private List<String> tags;
 
     private long timeLimitMs = 2000;
 

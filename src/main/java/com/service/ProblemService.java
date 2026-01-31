@@ -38,6 +38,7 @@ public class ProblemService {
         existing.setDifficulty(p.getDifficulty());
         existing.setConstraints(p.getConstraints());
         existing.setExamplesJson(p.getExamplesJson());
+        existing.setTags(p.getTags());
         return repo.save(existing);
     }
 
