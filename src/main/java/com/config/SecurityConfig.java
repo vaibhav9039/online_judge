@@ -38,7 +38,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/problems/create").hasAuthority("ADMIN")
                         .requestMatchers("/api/problems/update/**").hasAuthority("ADMIN")
                         .requestMatchers("/api/problems/delete/**").hasAuthority("ADMIN")
-                        .requestMatchers("/api/submissions/**").hasAuthority("USER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
